@@ -1,0 +1,20 @@
+Package: ordgam
+Type: Package
+Title: Proportional odds model for ordinal data with additive terms
+Version: 0.1.0
+Author:
+        person(given = "Philippe",
+           family = "Lambert",
+           role = c("aut", "cre"),
+           email = "p.lambert@uliege.be",
+           comment = "Université de Liège / Université catholique de Louvain (Belgium)")
+Maintainer: Philippe Lambert <p.lambert@uliege.be>
+Description: Fit an additive proportional odds model for ordinal data.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    cubicBsplines,
+    Matrix,
+    mgcv
+RoxygenNote: 7.2.1
