@@ -8,6 +8,8 @@ We propose a refined version of the LPS methodology by splitting the parameter s
 
 More details can be found in Lambert & Gressani (2022).
 
+![](https://github.com/plambertULiege/ordgam/README_Figs/Fig1-LatentSpace.pdf)
+
 ![](./README_Figs/Fig1-LatentSpace.pdf)
 
 ## The *ordgam* package in action
