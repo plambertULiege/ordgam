@@ -8,7 +8,7 @@ We propose a refined version of the LPS methodology by splitting the parameter s
 
 More details can be found in Lambert & Gressani (2022).
 
-![Latent](./README_Figs/Fig1-LatentSpace.pdf "Latent space")
+![Latent](README_Figs/Fig1-LatentSpace.pdf )
 
 ## The *ordgam* package in action
 Let us illustrate the use of the *ordgam* package on a data subset ($n=552$) from the European Social Survey (ESS 2018) specific to the French speaking respondents from Wallonia, one of the three regions in Belgium. Each of the participants (aged at least 15) was asked to react to the following statement, *Gay men and lesbians should be free to live their own life as they wish*, with a positioning on a Likert scale going from 1 (*Agree strongly*) to 5 (*Disagree strongly*).
