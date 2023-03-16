@@ -12,9 +12,11 @@
 #'
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
 #' @references
-#' Lambert, P. and Gressani, 0. (2022) Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
+#' Lambert, P. and Gressani, O. (2022) Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
 #'
 #' @seealso \code{\link{ordgam}}, \code{\link{ordregr.object}}.
+#'
+#' @author Philippe Lambert \email{p.lambert@uliege.be}
 #'
 #' @examples
 #' library(ordgam)
@@ -31,6 +33,7 @@ ordregr = function(y, nc=NULL, Xcal=Xcal, descending=FALSE,
     n = length(y)
     if (is.null(nc)) nc = length(unique(y))
     nalpha = nc-1 ; nbeta = ncol(Xcal)
+    if (is.null(nbeta)) nbeta = 0
     ## Initial values
     if (is.null(theta0)){
         tab = table(y)
@@ -99,12 +102,13 @@ ordregr = function(y, nc=NULL, Xcal=Xcal, descending=FALSE,
     ## N-R for <theta>
     grad.tol = 1e-3
     obj.NR = NewtonRaphson(g=g.fun,theta=theta0,tol=grad.tol)
-    ## Compute Hessian without prior
+    ## Compute Hessian with and without prior
     obj.llik = ordregr_lpost(y=y, nc=nc, Xcal=Xcal, theta=obj.NR$theta,
                              descending=descending,
-                             prior=prior, gradient=TRUE, Hessian=TRUE)$llik
+                             gradient=TRUE, Hessian=TRUE)$llik
+    obj.NR$llik = c(obj.llik)
     obj.NR$Hessian0 = attr(obj.llik,"Hessian") ## Hessian without prior
-    obj.NR$Sigma.theta = with(obj.NR, solve(-Hessian)) ## Var-Cov with prior
+    obj.NR$Sigma.theta = with(obj.NR, MASS::ginv(-Hessian)) ## Var-Cov with prior
     obj.NR$ED.full = with(obj.NR, rowSums(t(Sigma.theta) * (-Hessian0))) ## Effective dim
     names(obj.NR$ED.full) = names(theta0)
     ##
@@ -121,7 +125,7 @@ ordregr = function(y, nc=NULL, Xcal=Xcal, descending=FALSE,
     } ## End fun
     ##
     ans = obj.NR
-    ans$se.theta = sqrt(diag(solve(-obj.NR$Hessian)))
+    ans$se.theta = sqrt(diag(MASS::ginv(-obj.NR$Hessian)))
     ans$theta.mat = with(ans, fun(est=theta,se=se.theta,ci.level=ci.level))
     ans$nc = nc ; ans$nalpha = nalpha ; ans$nbeta = nbeta ; ans$nfixed=nbeta
     ans$ci.level = ci.level
@@ -135,7 +139,9 @@ ordregr = function(y, nc=NULL, Xcal=Xcal, descending=FALSE,
     ##
     ev = svd(-obj.NR$Hessian)$d
     ans$lpost = ans$val
-    ans$levidence = ans$lpost -.5*sum(log(ev[ev>1-6]))
+    ans$levidence = ans$lpost -.5*sum(log(ev[ev>1-6])) ## Log marginal likelihood
+    ans$AIC  = -2*ans$llik + 2*sum(ans$ED.full)
+    ans$BIC  = -2*ans$llik + sum(ans$ED.full)*log(n)
     ##
     class(ans) = "ordregr"
     return(ans)

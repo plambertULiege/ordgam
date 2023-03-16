@@ -25,7 +25,7 @@
 ##     lambda.lab: labels for the penalty parameters
 ##
 ## -----------------------------------
-## Philippe LAMBERT (ULiege, Oct 2018
+## Philippe LAMBERT (ULiege, Oct 2018)
 ## Email:  p.lambert@uliege.be
 ## Web: http://www.statsoc.ulg.ac.be
 ## -----------------------------------
@@ -109,7 +109,7 @@ DesignFormula = function(formula, data, K=10, pen.order=2, knots.x=NULL, n=NULL,
     # additive.lab = colnames(XX)[-(1:nfixed)]
     if (nfixed > 0) additive.lab = unname(sapply(colnames(XX)[-(1:nfixed)], function(x) substring(x,3,nchar(x)-1)))
     else additive.lab = unname(sapply(colnames(XX), function(x) substring(x,3,nchar(x)-1)))
-    lambda.lab = paste("lambda.",additive.lab,sep="")
+    lambda.lab = additive.lab ## paste("lambda.",additive.lab,sep="")
   }
   if (J > 0) {
     Xcal = cbind(Z,Bcal) ## Global design matrix

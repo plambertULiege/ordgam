@@ -19,7 +19,7 @@
 ##    cm: mean values substracted from each column of the original B-spline matrix
 ##
 ## -----------------------------------
-## Philippe LAMBERT (ULiege, Oct 2018
+## Philippe LAMBERT (ULiege, Oct 2018)
 ## Email:  p.lambert@uliege.be
 ## Web: http://www.statsoc.ulg.ac.be
 ## -----------------------------------

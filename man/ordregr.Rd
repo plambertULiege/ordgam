@@ -44,7 +44,7 @@ print(mod)
 
 }
 \references{
-Lambert, P. and Gressani, 0. (2022) Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
+Lambert, P. and Gressani, O. (2022) Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
 }
 \seealso{
 \code{\link{ordgam}}, \code{\link{ordregr.object}}.

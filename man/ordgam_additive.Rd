@@ -26,7 +26,11 @@ a list containing:
 \item{\code{f} : \verb{ }}{a list of length J with, for each additive term <x>, a list with f$x: a function computing the additive term f(x) for a given covariate value 'x' ; attributes(f$x): support, label, range.}
 \item{\code{f.se} : \verb{ }}{a list of length J with, for each additive term <x>, a list with f.se$x: a function computing the s.e. of f(x) for a given covariate value 'x' ; attributes(f.se$x): support, label, range}
 }
-
+}
+\description{
+Compute the additive terms estimated using an 'ordgam' model
+}
+\examples{
 library(ordgam)
 data(freehmsData)
 mod = ordgam(freehms ~ gndr + s(eduyrs) + s(age),
@@ -36,7 +40,8 @@ names(obj)
 with(obj$f.grid$age,
       matplot(x, y.mat, lty=c(1,2,2),type="l",col=1,
               xlab="Age", ylab="f(Age)"))
+
 }
-\description{
-Compute the additive terms estimated using an 'ordgam' model
+\author{
+Philippe Lambert \email{p.lambert@uliege.be}
 }

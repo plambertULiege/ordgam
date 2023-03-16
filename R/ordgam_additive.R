@@ -17,6 +17,9 @@
 #' \item{\code{f.se} : \verb{ }}{a list of length J with, for each additive term <x>, a list with f.se$x: a function computing the s.e. of f(x) for a given covariate value 'x' ; attributes(f.se$x): support, label, range}
 #' }
 #'
+#' @author Philippe Lambert \email{p.lambert@uliege.be}
+#'
+#' @examples
 #' library(ordgam)
 #' data(freehmsData)
 #' mod = ordgam(freehms ~ gndr + s(eduyrs) + s(age),

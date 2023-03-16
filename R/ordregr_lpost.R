@@ -34,8 +34,15 @@ ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,
     ##
     n = length(y) ## Sample size
     alpha = sort(theta[1:(nc-1)]) ## Intercepts
-    beta = tail(theta,-(nc-1))    ## Regression parameters
-    mu = c(Xcal %*% beta) ## Part of the linear predictor related to covariates
+    if (!is.null(Xcal)){
+        beta = tail(theta,-(nc-1))    ## Regression parameters
+        nbeta = length(beta)
+        mu = c(Xcal %*% beta) ## Part of the linear predictor related to covariates
+    } else { ## No regressors, just intercepts
+        beta = NULL
+        nbeta = 0
+        mu = 0
+    }
     ## Descending: TRUE if want to model odds of being in the upper response scale
     desc = ifelse(descending,-1,1)
     ## Fij = P(Yi <= j) ; pij = P(Yi=j)
@@ -84,11 +91,15 @@ ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,
         ## Salpha = apply(Salpha.i,2,sum) ## vector(nalpha)
         Salpha = colSums(Salpha.i) ## vector(nalpha)
         attr(llik,"Salpha") = Salpha
-        ## Score (beta)
-        w.i = (1 + pij - 2*Fij)[idx]
-        Sbeta.i = desc * Xcal *  w.i ## n x nbeta
-        ## Sbeta = apply(Sbeta.i,2,sum) ## vector(nbeta)
-        Sbeta = colSums(Sbeta.i) ## vector(nbeta)
+        if (nbeta > 0){
+            ## Score (beta)
+            w.i = (1 + pij - 2*Fij)[idx]
+            Sbeta.i = desc * Xcal *  w.i ## n x nbeta
+            ## Sbeta = apply(Sbeta.i,2,sum) ## vector(nbeta)
+            Sbeta = colSums(Sbeta.i) ## vector(nbeta)
+        } else {
+            Sbeta = NULL
+        }
         attr(llik,"Sbeta") = Sbeta
         ## Score (theta = (alpha,beta))
         grad = c(Salpha,Sbeta)
@@ -96,9 +107,12 @@ ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,
         ## Score for <lpost>
         if (use.prior){
             attr(lpost,"Salpha") = attr(llik,"Salpha")
-            attr(lpost,"Sbeta") = attr(llik,"Sbeta") + lprior$grad
+            if (nbeta > 0) {
+                attr(lpost,"Sbeta") = attr(llik,"Sbeta") + lprior$grad
+            } else {
+                attr(lpost,"Sbeta") = NULL
+            }
             attr(lpost,"grad") = c(attr(lpost,"Salpha"),attr(lpost,"Sbeta"))
-
         }
         ## Hessian
         if (Hessian){
@@ -115,30 +129,34 @@ ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,
             diag(Halpha) = diag(Halpha) + colSums(temp2)
             attr(llik,"Halpha") = Halpha
             ##
-            ## Hessian (beta)
-            ## --------------
-            term2 = t(apply(pij*(1+pij-2*Fij),1,cumsum))
-            w2.i = pij[idx] * w.i - 2*term2[idx]
-            Hbeta = t(Xcal) %*% (w2.i * Xcal) ## nbeta x nbeta
-            ## ## Approximate Hessian (beta)
-            ## Hbeta = crossprod(Salpha.i)
-            attr(llik,"Hbeta") = Hbeta
-            ##
-            ## Hessian (cross derivatives beta-alpha)
-            temp3 = matrix(0.,nrow=n,ncol=nc)
-            temp3[idx] = vij[idx] ; temp3[idx0] = vij[idx0]
-            Hba = - desc * (t(Xcal) %*% temp3)[,-nc]
-            attr(llik,"Hba") = Hba ## nalpha x nbeta
-            ##
-            ## Hessian (theta = (alpha,beta))
-            Hes = Matrix::bdiag(Halpha,Hbeta)
-            ida = 1:(nc-1) ; idb = nc:ncol(Hes)
-            Hes[idb,ida] = Hba
-            Hes[ida,idb] = t(Hba)
+            if (nbeta >0) {
+                ## Hessian (beta)
+                ## --------------
+                term2 = t(apply(pij*(1+pij-2*Fij),1,cumsum))
+                w2.i = pij[idx] * w.i - 2*term2[idx]
+                Hbeta = t(Xcal) %*% (w2.i * Xcal) ## nbeta x nbeta
+                ## ## Approximate Hessian (beta)
+                ## Hbeta = crossprod(Salpha.i)
+                attr(llik,"Hbeta") = Hbeta
+                ##
+                ## Hessian (cross derivatives beta-alpha)
+                temp3 = matrix(0.,nrow=n,ncol=nc)
+                temp3[idx] = vij[idx] ; temp3[idx0] = vij[idx0]
+                Hba = - desc * (t(Xcal) %*% temp3)[,-nc]
+                attr(llik,"Hba") = Hba ## nalpha x nbeta
+                ##
+                ## Hessian (theta = (alpha,beta))
+                Hes = Matrix::bdiag(Halpha,Hbeta)
+                ida = 1:(nc-1) ; idb = nc:ncol(Hes)
+                Hes[idb,ida] = Hba
+                Hes[ida,idb] = t(Hba)
+            } else {
+                Hes = Halpha
+            }
             attr(llik,"Hessian") = Hes ## ntheta x ntheta
             attr(llik,"Hessian") = as.matrix(Hes) ## ntheta x ntheta
             ##
-            dtheta = as.vector(solve(-Hes,grad))
+            dtheta = as.vector(solve(-Hes+1e-6*diag(ncol(Hes)),grad))
             attr(llik,"dtheta") = dtheta
             ## Hessian for <lpost>
             if (use.prior){
@@ -149,10 +167,10 @@ ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,
                 Hes.lpost = attr(llik,"Hessian")
                 Hes.lpost[idb,idb] = Hes.lpost[idb,idb] - lprior$Prec
                 attr(lpost,"Hessian") = Hes.lpost   ## Hessian with prior
-                attr(lpost,"Sigma") = solve(-Hes.lpost)
+                attr(lpost,"Sigma") = MASS::ginv(-Hes.lpost) ## solve(-Hes.lpost)
                 ##
-                dtheta = as.vector(solve(-Hes.lpost, attr(lpost,"grad")))
-                ## dtheta = as.vector(MASS::ginv(-Hes.lpost) %*% attr(lpost,"grad"))
+                ## dtheta = as.vector(solve(-Hes.lpost, attr(lpost,"grad")))
+                dtheta = as.vector(MASS::ginv(-Hes.lpost) %*% attr(lpost,"grad"))
                 attr(lpost,"dtheta") = dtheta
             }
         }

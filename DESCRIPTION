@@ -1,7 +1,7 @@
 Package: ordgam
 Type: Package
 Title: Proportional odds model for ordinal data with additive terms
-Version: 0.1.0
+Version: 0.9.0
 Author:
         person(given = "Philippe",
            family = "Lambert",
@@ -16,5 +16,13 @@ LazyData: true
 Imports: 
     cubicBsplines,
     Matrix,
-    mgcv
+    mgcv,
+    marqLevAlg,
+    sn,
+    MASS,
+    numDeriv,
+    ucminf
 RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

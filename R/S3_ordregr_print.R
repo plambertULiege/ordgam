@@ -17,6 +17,8 @@
 #'
 #' @seealso \code{\link{ordregr}}, \code{\link{ordgam}}
 #'
+#' @author Philippe Lambert \email{p.lambert@uliege.be}
+#'
 #' @examples
 #' library(ordgam)
 #' data(freehmsData)
@@ -54,18 +56,27 @@ print.ordregr <- function(x,expEst=TRUE, ...){
                                   low=exp(theta.mat[,"low"]),
                                   up=exp(theta.mat[,"up"]),
                                   Pval=theta.mat[,"Pval"]) )
-        printCoefmat(mat[idx2,,drop=FALSE],
+        printCoefmat(mat[idx2,,drop=FALSE], ##cs.ind=1:4,tst.ind=5,
                      digits=3,P.values=TRUE,has.Pvalue=TRUE,signif.legend=FALSE, ...)
     }
     ##
     if ("ordgam" %in% class(obj)){
         if (obj$regr$J > 0){
             cat("\nApproximate significance of smooth terms:\n")
-            printCoefmat(obj$ED,
-                         digits=3,P.values=TRUE,has.Pvalue=TRUE,signif.legend=FALSE, ...)
-            cat("\n(Fixed) penalty parameters <lambda>: ",obj$lambda,"\n")
+            temp = cbind(obj$ED.Tr,obj$ED.Chi2)[,-4,drop=FALSE]
+            printCoefmat(temp,digits=3,cs.ind=1L,tst.ind=c(2,4),
+                         P.values=TRUE,has.Pvalue=TRUE,signif.legend=FALSE, ...)
+            if (obj$select.lambda){
+                cat("\nSelected penalty parameters <lambda>: ",obj$lambda,"\n")
+                cat("Lambda log prior:  ") ; print(body(obj$lprior.lambda))
+            } else {
+                cat("\n(Fixed) penalty parameters <lambda>: ",obj$lambda,"\n")
+            }
         }
     }
+    ##
+    cat("\nLikelihood - Information criterions:\n")
+    print(round(with(obj,c(edf=sum(ED.full),logL=llik,logLmarg=levidence,AIC=AIC,BIC=BIC)),2))
     ##
     if (obj$descending){
         cat("\nNOTE: model the odds of a response value in the upper scale\n")

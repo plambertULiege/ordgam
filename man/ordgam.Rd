@@ -2,7 +2,7 @@
 % Please edit documentation in R/ordgam.R
 \name{ordgam}
 \alias{ordgam}
-\title{Fit a proportional odds model for ordinal data specified using a formula with (potentially) additive terms (for given fixed penalty parameters).}
+\title{Fit of an additive proportional odds model for ordinal data using Laplace approximations and P-splines}
 \usage{
 ordgam(
   formula,
@@ -11,10 +11,14 @@ ordgam(
   K = 10,
   pen.order = 2,
   descending = TRUE,
-  Wood.test = TRUE,
+  select.lambda = TRUE,
+  lambda.family = "dgamma",
+  lambda.optimizer = "nlminb",
+  lprior.lambda = function(x) dgamma(x, 1, 1e-04, log = TRUE),
   theta0 = NULL,
   lambda0 = NULL,
-  ci.level = 0.95
+  ci.level = 0.95,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -28,21 +32,29 @@ ordgam(
 
 \item{pen.order}{Penalty order (Default: 2).}
 
-\item{descending}{Logical indicating if the odds of the response taking a value in the upper scale should be preferred over values in the lower scale.}
+\item{descending}{Logical indicating if the odds of the response taking a value in the upper scale should be preferred over values in the lower scale (Default: TRUE).}
 
-\item{Wood.test}{Logical indicating if the significance test described by S. Wood (Biometrika 2013)  should be used to test for additive term significance. When FALSE, an approximate Chi2 test based on the effective degrees of freedom for each additive term is reported.}
+\item{select.lambda}{Logical indicating if the penalty parameters should be tuned (Default: TRUE).}
 
-\item{theta0}{(Optional) Vector containing starting values for the regression parameters}
+\item{lambda.family}{Prior for <lambda>. Possible choices are "none", "dgamma", "BetaPrime" or "myprior" for a user specified function for the prior of <lambda>.}
+
+\item{lambda.optimizer}{Algorithm used to maximize p(lambda|data). Possible choices are "nlminb","ucminf","nlm","LevMarq" (Default: "nlminb").}
+
+\item{lprior.lambda}{Log of the prior density for a <lambda> component if \code{lambda.family} set to "myprior".}
+
+\item{theta0}{(Optional) Vector containing starting values for the regression parameters.}
 
 \item{lambda0}{Vector of penalty parameters for the additive terms (Default: 10 for each additive term).}
 
 \item{ci.level}{Confidence levels of the computed credible intervals for the regression parameters.}
+
+\item{verbose}{Verbose mode (logical)}
 }
 \value{
 an object of type \code{\link{ordgam.object}}.
 }
 \description{
-Fit a proportional odds model for ordinal data specified using a formula with (potentially) additive terms (for given fixed penalty parameters).
+Fit of an additive proportional odds model for ordinal data using Laplace approximations and P-splines
 }
 \examples{
 library(ordgam)
@@ -54,10 +66,13 @@ plot(mod)
 
 }
 \references{
-Lambert, P. and Gressani, 0. (2022) Penalty parameter selection and
+Lambert, P. and Gressani, O. (2022) Penalty parameter selection and
 asymmetry corrections to Laplace approximations in Bayesian P-splines models.
 arXiv:2210.01668.
 }
 \seealso{
 \code{\link{ordregr}}, \code{\link{ordgam.object}}.
+}
+\author{
+Philippe Lambert \email{p.lambert@uliege.be}
 }

@@ -3,6 +3,10 @@
 S3method(plot,ordgam)
 S3method(print,ordregr)
 export(Pcal.fun)
+export(SNapprox)
+export(STapprox)
+export(lmarg.gammaTilde)
+export(lpost.gamma)
 export(ordgam)
 export(ordgam_additive)
 export(ordregr)
@@ -12,7 +16,7 @@ export(testStat)
 
 importFrom("grDevices", "dev.new")
 importFrom("graphics", "par")
-importFrom("stats", "model.matrix", "pchisq", "pf", "printCoefmat", "qlogis", "qnorm", "splinefun")
+importFrom("stats", "dgamma", "lm", "model.matrix", "nlm", "nlminb",
+           "pchisq", "pf", "printCoefmat", "qlogis", "qnorm",
+           "splinefun")
 importFrom("utils", "head", "tail")
-importFrom("mgcv", "psum.chisq")
-
