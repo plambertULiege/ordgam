@@ -8,7 +8,7 @@ We propose a refined version of the LPS methodology by splitting the parameter s
 
 More details can be found in Lambert & Gressani (2022).
 
-![Latent](README_Figs/Fig1-LatentSpace.pdf )
+![Latent](README_Figs/Fig1-LatentSpace.pdf)
 
 ## The *ordgam* package in action
 Let us illustrate the use of the *ordgam* package on a data subset ($n=552$) from the European Social Survey (ESS 2018) specific to the French speaking respondents from Wallonia, one of the three regions in Belgium. Each of the participants (aged at least 15) was asked to react to the following statement, *Gay men and lesbians should be free to live their own life as they wish*, with a positioning on a Likert scale going from 1 (*Agree strongly*) to 5 (*Disagree strongly*).
@@ -65,7 +65,7 @@ The estimated additive terms can also be visualized:
 
 	plot(mod)
 	
-![](./README_Figs/feduc.pdf) ![](./README_Figs/fage.pdf)
+![feduc](./README_Figs/feduc.pdf) ![fage](./README_Figs/fage.pdf)
 
 ### Asymmetric posterior for the non-penalized parameters
 The asymmetry of the posterior for the non-penalized parameters $\pmb{\gamma}$ can be visualized. The first step in the approach requires the projection of $\pmb{\gamma}$ on the eigenvectors of the variance-covariance matrix $\Sigma_\lambda^{\gamma\gamma}$, yielding $\tilde{\pmb{\gamma}}$ and its approximately independent components. The posterior density $p(\tilde\gamma_k|\lambda,{\cal D})$ is further approximated using a skew-t density, revealing a non-negligible asymmetry for the posterior of $\tilde\gamma_1$ (corresponding to the direction of the eigenvector with the largest eigenvalue):
@@ -91,7 +91,7 @@ The asymmetry of the posterior for the non-penalized parameters $\pmb{\gamma}$ c
 	          xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1) 
 	}
 
-![](./README_Figs/gammaTildePosterior.pdf)
+![gammaTildePlot](./README_Figs/gammaTildePosterior.pdf)
 
 The results can be re-expressed in the original parametrization, yieding $p(\gamma_k|\lambda,{\cal D})$ and a noticable asymmetry for the posterior density of $\gamma_4$:
 
@@ -127,7 +127,7 @@ The results can be re-expressed in the original parametrization, yieding $p(\gam
 	          xlim=xlim, xlab=xlab, ylab=ylab)
 	}
 
-![](./README_Figs/gammaPosterior.pdf)
+![GammaPlot](./README_Figs/gammaPosterior.pdf)
 
 ## License
 **ordgam**: Additive proportional odds model for ordinal data using Laplace approximations and Bayesian P-splines. Copyright (C) 2022-2023 Philippe Lambert
