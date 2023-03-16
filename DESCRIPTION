@@ -1,6 +1,6 @@
 Package: ordgam
 Type: Package
-Title: Proportional odds model for ordinal data with additive terms
+Title: Additive proportional odds model for ordinal data using Laplace approximations and P-splines
 Version: 0.9.0
 Author:
         person(given = "Philippe",
@@ -9,7 +9,7 @@ Author:
            email = "p.lambert@uliege.be",
            comment = "Université de Liège / Université catholique de Louvain (Belgium)")
 Maintainer: Philippe Lambert <p.lambert@uliege.be>
-Description: Fit an additive proportional odds model for ordinal data.
+Description: Additive proportional odds model for ordinal data using Laplace approximations and P-splines.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
