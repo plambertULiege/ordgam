@@ -10,7 +10,7 @@ Author:
            comment = "Université de Liège / Université catholique de Louvain (Belgium)")
 Maintainer: Philippe Lambert <p.lambert@uliege.be>
 Description: Additive proportional odds model for ordinal data using Laplace approximations and P-splines.
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
