@@ -16,7 +16,8 @@ Let us illustrate the use of the *ordgam* package on a data subset ($n=552$) fro
 ### Model fitting
 Let us fit a proportional odds model to these data with the number of completed years of education ($14.1\pm 4.4$ years) and age ($47.3\pm 18.5$ years) entering as additive terms, $L=10$ recentered B-splines
 spanning each covariate range, and Gamma priors for the penalty parameters, $\lambda_j\sim{\cal G}(1,10^{-4})$ ($j=1,2$).	
-	
+
+~~~r	
 	## Package installation and loading
 	install.packages("devtools")
 	devtools::install_github("plambertULiege/ordgam")
@@ -32,9 +33,11 @@ spanning each covariate range, and Gamma priors for the penalty parameters, $\la
                  lambda.family="myprior", ## User-based prior for lambda
                  lprior.lambda = function(x) dgamma(x,1,1e-4,log=TRUE)) 
 	print(mod)                                  
+~~~
 
 It yields the following:
-	
+
+~~~r	
 	## Call:
 	##  ordgam(formula = freehms ~ s(eduyrs) + s(age), data = freehmsData,      descending = TRUE) 
 	
@@ -60,23 +63,27 @@ It yields the following:
 	##     7.79  -598.66  -606.75  1212.90  1246.49 
 	
 	## NOTE: model the odds of a response value in the upper scale
+~~~
 	
 The estimated additive terms can also be visualized:
 
+~~~r
 	plot(mod)
+~~~
 	
 ![feduc](./README_Figs/feduc.pdf) ![fage](./README_Figs/fage.pdf)
 
 ### Asymmetric posterior for the non-penalized parameters
 The asymmetry of the posterior for the non-penalized parameters $\pmb{\gamma}$ can be visualized. The first step in the approach requires the projection of $\pmb{\gamma}$ on the eigenvectors of the variance-covariance matrix $\Sigma_\lambda^{\gamma\gamma}$, yielding $\tilde{\pmb{\gamma}}$ and its approximately independent components. The posterior density $p(\tilde\gamma_k|\lambda,{\cal D})$ is further approximated using a skew-t density, revealing a non-negligible asymmetry for the posterior of $\tilde\gamma_1$ (corresponding to the direction of the eigenvector with the largest eigenvalue):
 
+~~~r
 	model = mod  ## Model for which the approximation is required
 	
 	## Skew-t approximation to the marginal of gamma.tilde[k]
 	ngamma = with(model, nalpha+nfixed)  ## Number of non-penalized parms
 	gamt.ST = list()  ## Skew-t coefs --> dst(x,dp=coef)
 	for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-	    x.grid = seq(-4,4,length=40)  ## Grid of values for gamma.tilde[k]
+	    x.grid = seq(-4,4,length=10)  ## Grid of values for gamma.tilde[k]
 	    lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,model)  ## log p(gamma.tilde[k] | D)
 	    gamt.ST[[k]] = ordgam:::STapprox(x.grid,lfy.grid)$dp  ## Approximate using a skew-t
 	}
@@ -90,11 +97,13 @@ The asymmetry of the posterior for the non-penalized parameters $\pmb{\gamma}$ c
 	    curve(dst(x,dp=gamt.ST[[k]]), xlim=xlim,
 	          xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1) 
 	}
-
+~~~
+	
 ![gammaTildePlot](./README_Figs/gammaTildePosterior.pdf)
 
 The results can be re-expressed in the original parametrization, yieding $p(\gamma_k|\lambda,{\cal D})$ and a noticable asymmetry for the posterior density of $\gamma_4$:
-
+	
+~~~r
 	## Sampling <gamma.tilde> using the (approximate) independence of its components
 	M = 10000
 	sample.tilde = matrix(nrow=M,ncol=ngamma)
@@ -104,9 +113,9 @@ The results can be re-expressed in the original parametrization, yieding $p(\gam
 	}
 	
 	## Revert sample to the original <gamma> parametrization
-	gam.hat = model$theta[1:ngamma]
-	Sig = model$Sigma.theta[1:ngamma,1:ngamma]
-	sv = svd(Sig) ; V = sv$u ; omega = sv$d
+	gam.hat = model$theta[1:ngamma]  ## MAP estimate
+	Sig = model$Sigma.theta[1:ngamma,1:ngamma] ## Variance-covariance
+	sv = svd(Sig) ; V = sv$u ; omega = sv$d  ## SVD
 	sample.gam = t(gam.hat + V %*% (sqrt(omega) * t(sample.tilde)))
 	
 	## Skew-t approximation to the marginal of gam[k]
@@ -126,7 +135,7 @@ The results can be re-expressed in the original parametrization, yieding $p(\gam
 	    curve(dst(x,dp=gam.ST[[k]]), lwd=2,col="blue",
 	          xlim=xlim, xlab=xlab, ylab=ylab)
 	}
-
+~~~
 ![GammaPlot](./README_Figs/gammaPosterior.pdf)
 
 ## License
@@ -141,4 +150,4 @@ You should have received a copy of the GNU General Public License along with thi
 ## References
 * Lambert, P. and Gressani, O (2022). Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. [*arXiv:2210.01668*](https://arxiv.org/abs/2210.01668)
 
-* Lambert, P. (2022) R-package *ordgam* - GitHub: [plambertULiege/ordgam](https://github.com/plambertULiege/ordgam)
+* Lambert, P. (2023) R-package *ordgam* - GitHub: [plambertULiege/ordgam](https://github.com/plambertULiege/ordgam)
