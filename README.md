@@ -37,8 +37,7 @@ spanning each covariate range, and Gamma priors for the penalty parameters, $\la
 	donnees = freehmsData
 
 	## Model fit with a Gamma prior for the penalty parameters
-	mod = ordgam(freehms ~ s(eduyrs) + s(age), data=donnees,
-			     descending = FALSE, 
+	mod = ordgam(freehms ~ s(eduyrs) + s(age), data=donnees, descending = FALSE, 
                  lambda.family="myprior", ## User-based prior for lambda
                  lprior.lambda = function(x) dgamma(x,1,1e-4,log=TRUE)) 
 	print(mod)                                  
@@ -80,8 +79,7 @@ The estimated additive terms can also be visualized:
 	plot(mod)
 ~~~
 <figure>
-<img src="man/figures/feduc.png" width="45%"/>
-<img src="man/figures/fage.png" width="45%"/>
+<img src="man/figures/feduc_fage.png" width="90%"/>
 </figure>
 
 
