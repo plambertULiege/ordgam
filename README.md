@@ -10,7 +10,7 @@ More details can be found in Lambert & Gressani (2022) [1].
 
 <figure>
 
-<img src="man/figures/Fig1-LatentSpace.pdf" width="75%"/>
+<img src="man/figures/Fig1-LatentSpace.png" width="75%"/>
 
 <figcaption>
 
