@@ -79,9 +79,11 @@ The estimated additive terms can also be visualized:
 ~~~r
 	plot(mod)
 ~~~
-
+<figure>
 <img src="man/figures/feduc.png" width="45%"/>
 <img src="man/figures/fage.png" width="45%"/>
+</figure>
+
 
 ### Asymmetric posterior for the non-penalized parameters
 The asymmetry of the posterior for the non-penalized parameters $\pmb{\gamma}$ can be visualized. The first step in the approach requires the projection of $\pmb{\gamma}$ on the eigenvectors of the variance-covariance matrix $\Sigma_\lambda^{\gamma\gamma}$, yielding $\tilde{\pmb{\gamma}}$ and its approximately independent components. The posterior density $p(\tilde\gamma_k|\lambda,{\cal D})$ is further approximated using a skew-t density, revealing a non-negligible asymmetry for the posterior of $\tilde\gamma_1$ (corresponding to the direction of the eigenvector with the largest eigenvalue):
