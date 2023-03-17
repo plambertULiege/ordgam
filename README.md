@@ -11,6 +11,7 @@ We propose a refined version of the LPS methodology by splitting the parameter s
 Fig.1: Proposed strategy to account for skewness and kurtosis in the posterior of the non-penalized parameters.
 </figcaption>
 </figure>
+
 The marginal posterior density $p(\pmb{\nu}|{\cal D})$ for the log of the penalty parameters, $\pmb{\nu}=\log(\pmb{\lambda})$, can be approximated using a product of skew-t densities.
 More details can be found in Lambert & Gressani (2022) [[1]](https://arxiv.org/abs/2210.01668).
 
