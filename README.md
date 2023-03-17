@@ -79,7 +79,10 @@ The estimated additive terms can also be visualized:
 ~~~r
 	plot(mod)
 ~~~
-	
+
+![](man/figures/feduc.png){width=45%}
+![](man/figures/fage.png){width=45%}
+
 <img src="man/figures/feduc.png" width="45%"/>
 <img src="man/figures/fage.png" width="45%"/>
 
