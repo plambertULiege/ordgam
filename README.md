@@ -5,6 +5,10 @@ The _*ordgam*_ package enables to fit an additive proportional odds model to ord
 The combination of **Laplace approximations** and of **Bayesian P-splines** (named *LPS*) enable fast and flexible inference in a Bayesian framework. The Gaussian Markov field prior assumed for the penalized spline parameters and the Bernstein-von Mises theorem typically provide reliable Laplace approximation to the posterior distribution of these quantities. However, this accuracy can be seriously compromised for some unpenalized parameters, especially when the information synthesized by the prior and the likelihood is sparse.
 
 We propose a refined version of the LPS methodology by splitting the parameter space in two subsets, $\pmb{\zeta}=(\pmb{\gamma}^\top,\pmb{\theta}^\top)^\top$ . The first set involves the non-penalized parameters $\pmb{\gamma}$ for which the joint posterior distribution $p(\pmb{\gamma}|\pmb{\lambda},{\cal D})$ is approached from a non-Gaussian perspective with an approximation scheme tailored to capture asymmetry and kurtosis, while the conditional posterior distribution $p(\pmb{\theta}|\pmb{\gamma},\pmb{\lambda},{\cal D})$ for the penalized parameters $\pmb{\theta}$ in the complementary set undergoes the LPS treatment with Laplace approximations, see Fig.1. 
+
+The marginal posterior density $p(\pmb{\nu}|{\cal D})$ for the log of the penalty parameters, $\pmb{\nu}=\log(\pmb{\lambda})$, also could be approximated using a product of skew-t densities.
+More details can be found in Lambert & Gressani (2022) [[1]](https://arxiv.org/abs/2210.01668).
+
 <figure>
 <img src="man/figures/Fig1-LatentSpace.png" width="85%" />
 <figcaption>
@@ -12,8 +16,6 @@ Fig.1: Proposed strategy to account for skewness and kurtosis in the posterior o
 </figcaption>
 </figure>
 
-The marginal posterior density $p(\pmb{\nu}|{\cal D})$ for the log of the penalty parameters, $\pmb{\nu}=\log(\pmb{\lambda})$, can be approximated using a product of skew-t densities.
-More details can be found in Lambert & Gressani (2022) [[1]](https://arxiv.org/abs/2210.01668).
 
 
 
