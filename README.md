@@ -64,7 +64,7 @@ It yields the following:
 	## Selected penalty parameters <lambda>:  191.7967 18.40125 
 	## Lambda log prior:  dgamma(lambda, 1, 1e-04, log = TRUE)
 	
-	## Likelihood - Information criterions:
+	## Likelihood - Information criterions (n = 552):
 	##      edf     logL logLmarg      AIC      BIC 
 	##     7.79  -598.66  -606.75  1212.90  1246.49 
 	

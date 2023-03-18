@@ -75,7 +75,7 @@ print.ordregr <- function(x,expEst=TRUE, ...){
         }
     }
     ##
-    cat("\nLikelihood - Information criterions:\n")
+    cat("\nLikelihood - Information criterions (n = ",obj$n,"):\n",sep="")
     print(round(with(obj,c(edf=sum(ED.full),logL=llik,logLmarg=levidence,AIC=AIC,BIC=BIC)),2))
     ##
     if (obj$descending){
