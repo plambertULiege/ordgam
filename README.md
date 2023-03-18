@@ -45,7 +45,7 @@ It yields the following:
 
 ~~~r	
 	## Call:
-	##  ordgam(formula = freehms ~ s(eduyrs) + s(age), data = freehmsData,      descending = TRUE) 
+	##  ordgam(formula = freehms ~ s(eduyrs) + s(age), data = freehmsData, descending = TRUE) 
 	
 	## Prior set on the regression paramaters <beta>
 	
