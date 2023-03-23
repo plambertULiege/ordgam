@@ -269,7 +269,7 @@ their prior:
   }
 ```
 
-<img src="man/figures/ordgamFL2-1.png" width="99%" />
+<img src="man/figures/ordgamFL2-1.png" style="display: block; margin: auto;" />
 
 While the first posterior associated to penalty parameter for ‘eduyrs’
 does not depart from its prior with a large prior mean (as
