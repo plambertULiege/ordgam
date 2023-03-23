@@ -248,7 +248,7 @@ from the estimates for Wallonia with, here, the suggestion of a
 statistically significant and linear effect of 'eduyrs'.
 
 The marginal posterior distribution of the log of the penalty
-parameters, $\mu_j=\log\lambda_j$, can be visualized and compared to the
+parameters, $\nu_j=\log\lambda_j$, can be visualized and compared to the
 their prior:
 
 ``` r
