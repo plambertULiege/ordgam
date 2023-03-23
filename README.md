@@ -252,22 +252,22 @@ parameters, $\mu_j=\log\lambda_j$, can be visualized and compared to the
 their prior:
 
 ``` r
-  model = mod.FL
-  ## log(lambda) marginal posteriors
-  par(mfrow=c(1,2),mar=c(4,5,3,1))
-  for (j in 1:2){ ## Loop over <nu> components
-    ## Plot of the approximating skew-t for <nu[j]>
-    xlims = sn::qst(c(.001,.999),dp=model$nu.dp[[j]])
-    xlab = bquote(log(lambda[.(j)]))
-    ylab = bquote(p(log(lambda[.(j)])~ "|"~D))
-    curve(sn::dst(x,dp=model$nu.dp[[j]]),xlims[1],xlims[2],lwd=2,col="red",
-          main=names(model$lambda)[j],xlab=xlab,ylab=ylab,ylim=c(0,.4))
-    ## ... compared to the prior for <nu[j]>
-    curve(exp(model$lprior.lambda(exp(x)))*exp(x),add=T,lty=3,lwd=2)
-    legend("topright", legend=c("Posterior","Prior"),
-           lwd=c(2,2), lty=c(1,3), col=c("red","black"),
-           horiz=TRUE, bty="n",cex=1)
-  }
+model = mod.FL
+## log(lambda) marginal posteriors
+par(mfrow=c(1,2),mar=c(4,5,3,1))
+for (j in 1:2){ ## Loop over <nu> components
+  ## Plot of the approximating skew-t for <nu[j]>
+  xlims = sn::qst(c(.001,.999),dp=model$nu.dp[[j]])
+  xlab = bquote(log(lambda[.(j)]))
+  ylab = bquote(p(log(lambda[.(j)])~ "|"~D))
+  curve(sn::dst(x,dp=model$nu.dp[[j]]),xlims[1],xlims[2],lwd=2,col="red",
+        main=names(model$lambda)[j],xlab=xlab,ylab=ylab,ylim=c(0,.4))
+  ## ... compared to the prior for <nu[j]>
+  curve(exp(model$lprior.lambda(exp(x)))*exp(x),add=T,lty=3,lwd=2)
+  legend("topright", legend=c("Posterior","Prior"),
+         lwd=c(2,2), lty=c(1,3), col=c("red","black"),
+         horiz=TRUE, bty="n",cex=1)
+}
 ```
 
 <img src="man/figures/ordgamFL2-1.png" style="display: block; margin: auto;" />
