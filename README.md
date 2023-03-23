@@ -6,7 +6,7 @@ model to ordinal data.
 
 The combination of **Laplace approximations** and of **Bayesian
 P-splines** (named *LPS*) enable fast and flexible inference in a
-Bayesian framework. The Gaussian Markov field prior assumed for the
+Bayesian framework. The Gaussian Markov random field prior assumed for the
 penalized spline parameters and the Bernstein-von Mises theorem
 typically provide reliable Laplace approximation to the posterior
 distribution of these quantities. However, this accuracy can be
