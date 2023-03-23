@@ -51,15 +51,15 @@ their own life as they wish*, with a positioning on a Likert scale going
 from 1 (*Agree strongly*) to 5 (*Disagree strongly*).
 
 ``` r
-    ## Package installation and loading
-    ## install.packages("devtools")
-    ## devtools::install_github("plambertULiege/ordgam")
-    library(ordgam) 
+## Package installation and loading
+## install.packages("devtools")
+## devtools::install_github("plambertULiege/ordgam")
+library(ordgam) 
     
-    ## Data reading
-    data(freehmsDataBE)
-    donnees = subset(freehmsDataBE,region=="WAL") ## Focus on Wallonia
-    head(donnees)
+## Data reading
+data(freehmsDataBE)
+donnees = subset(freehmsDataBE,region=="WAL") ## Focus on Wallonia
+head(donnees)
 ```
 
     ##    freehms   gndr age eduyrs region
@@ -79,9 +79,9 @@ B-splines spanning each covariate range, and Gamma priors for the
 penalty parameters, $\lambda_j\sim{\cal G}(1,10^{-4})$ ($j=1,2$).
 
 ``` r
-    ## Model fit with a Gamma prior for the penalty parameters
-    mod = ordgam(freehms ~ s(eduyrs) + s(age), data=donnees, descending = FALSE) 
-    print(mod)                                  
+## Model fit with a Gamma prior for the penalty parameters
+mod = ordgam(freehms ~ s(eduyrs) + s(age), data=donnees, descending = FALSE) 
+print(mod)                                  
 ```
 
     ## Call:
@@ -113,7 +113,7 @@ penalty parameters, $\lambda_j\sim{\cal G}(1,10^{-4})$ ($j=1,2$).
 The estimated additive terms can also be visualized:
 
 ``` r
-    plot(mod, mfrow=c(1,2))
+plot(mod, mfrow=c(1,2))
 ```
 
 <figure>
@@ -133,26 +133,26 @@ asymmetry for the posterior of $\tilde\gamma_1$ (corresponding to the
 direction of the eigenvector with the largest eigenvalue):
 
 ``` r
-    model = mod  ## Model for which the approximation is required
+model = mod  ## Model for which the approximation is required
     
-    ## Skew-t approximation to the marginal of gamma.tilde[k]
-    ngamma = with(model, nalpha+nfixed)  ## Number of non-penalized parms
-    gamt.ST = list()  ## Skew-t coefs --> dst(x,dp=coef)
-    for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-        x.grid = seq(-4,4,length=10)  ## Grid of values for gamma.tilde[k]
-        lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,model)  ## log p(gamma.tilde[k] | D)
-        gamt.ST[[k]] = ordgam:::STapprox(x.grid,lfy.grid)$dp  ## Approximate using a skew-t
-    }
+## Skew-t approximation to the marginal of gamma.tilde[k]
+ngamma = with(model, nalpha+nfixed)  ## Number of non-penalized parms
+gamt.ST = list()  ## Skew-t coefs --> dst(x,dp=coef)
+for (k in 1:ngamma){ ## Loop over the gamma.tilde components
+     x.grid = seq(-4,4,length=10)  ## Grid of values for gamma.tilde[k]
+     lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,model)  ## log p(gamma.tilde[k] | D)
+     gamt.ST[[k]] = ordgam:::STapprox(x.grid,lfy.grid)$dp  ## Approximate using a skew-t
+}
     
-    ## Visualization of the posterior for <gamma.tilde[k]>
-    par(mfrow=c(2,2),mar=c(4,5,1,1))
-    for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-        xlab = bquote(tilde(gamma)[.(k)])
-        ylab = bquote(p(tilde(gamma)[.(k)]~ "|"~lambda~","~D))
-        xlim = sn::qst(c(.0001,.9999),dp=gamt.ST[[k]])
-        curve(sn::dst(x,dp=gamt.ST[[k]]), xlim=xlim,
-              xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1) 
-    }
+## Visualization of the posterior for <gamma.tilde[k]>
+par(mfrow=c(2,2),mar=c(4,5,1,1))
+for (k in 1:ngamma){ ## Loop over the gamma.tilde components
+     xlab = bquote(tilde(gamma)[.(k)])
+     ylab = bquote(p(tilde(gamma)[.(k)]~ "|"~lambda~","~D))
+     xlim = sn::qst(c(.0001,.9999),dp=gamt.ST[[k]])
+     curve(sn::dst(x,dp=gamt.ST[[k]]), xlim=xlim,
+           xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1) 
+}
 ```
 
 <img src="man/figures/ordgam2-1.png" style="display: block; margin: auto;" />
@@ -162,38 +162,38 @@ $p(\gamma_k|\lambda,{\cal D})$ and a noticable asymmetry for the
 posterior density of $\gamma_4$:
 
 ``` r
-    ## Sampling <gamma.tilde> using the (approximate) independence of its components
-    M = 10000
-    sample.tilde = matrix(nrow=M,ncol=ngamma)
-    for (k in 1:ngamma){
-        ## ... or using skew-t approximation
-        sample.tilde[,k] = c(sn::rst(M, dp=gamt.ST[[k]]))
-    }
+## Sampling <gamma.tilde> using the (approximate) independence of its components
+M = 10000
+sample.tilde = matrix(nrow=M,ncol=ngamma)
+for (k in 1:ngamma){
+    ## ... or using skew-t approximation
+    sample.tilde[,k] = c(sn::rst(M, dp=gamt.ST[[k]]))
+}
     
-    ## Revert sample to the original <gamma> parametrization
-    gam.hat = model$theta[1:ngamma]  ## MAP estimate
-    Sig = model$Sigma.theta[1:ngamma,1:ngamma] ## Variance-covariance
-    sv = svd(Sig) ; V = sv$u ; omega = sv$d  ## SVD
-    sample.gam = t(gam.hat + V %*% (sqrt(omega) * t(sample.tilde)))
+## Revert sample to the original <gamma> parametrization
+gam.hat = model$theta[1:ngamma]  ## MAP estimate
+Sig = model$Sigma.theta[1:ngamma,1:ngamma] ## Variance-covariance
+sv = svd(Sig) ; V = sv$u ; omega = sv$d  ## SVD
+sample.gam = t(gam.hat + V %*% (sqrt(omega) * t(sample.tilde)))
     
-    ## Skew-t approximation to the marginal of gam[k]
-    gam.ST = gam.ST2 = list()
-    for (k in 1:ngamma){
-        temp = hist(sample.gam[,k],plot=FALSE)
-        gam.ST[[k]] = ordgam:::STapprox(temp$mids,log(temp$density+1e-6))$dp
-        ## temp = selm(sample.gam[,k] ~ 1, family="ST")
-        ## gam.ST2[[k]] = coef(temp,"DP")
-    }
+## Skew-t approximation to the marginal of gam[k]
+gam.ST = gam.ST2 = list()
+for (k in 1:ngamma){
+    temp = hist(sample.gam[,k],plot=FALSE)
+    gam.ST[[k]] = ordgam:::STapprox(temp$mids,log(temp$density+1e-6))$dp
+    ## temp = selm(sample.gam[,k] ~ 1, family="ST")
+    ## gam.ST2[[k]] = coef(temp,"DP")
+}
     
-    ## Visualize p(gamma[k] | lambda,data)
-    par(mfrow=c(2,2),mar=c(4,5,1,1))
-    for (k in 1:ngamma){
-        xlab = bquote(gamma[.(k)])
-        ylab = bquote(p(gamma[.(k)]~ "|"~lambda~","~D))
-        xlim = sn::qst(c(.0001,.9999),dp=gam.ST[[k]])
-        curve(sn::dst(x,dp=gam.ST[[k]]), lwd=2,col="blue",
-              xlim=xlim, xlab=xlab, ylab=ylab)
-    }
+## Visualize p(gamma[k] | lambda,data)
+par(mfrow=c(2,2),mar=c(4,5,1,1))
+for (k in 1:ngamma){
+    xlab = bquote(gamma[.(k)])
+    ylab = bquote(p(gamma[.(k)]~ "|"~lambda~","~D))
+    xlim = sn::qst(c(.0001,.9999),dp=gam.ST[[k]])
+    curve(sn::dst(x,dp=gam.ST[[k]]), lwd=2,col="blue",
+          xlim=xlim, xlab=xlab, ylab=ylab)
+}
 ```
 
 <img src="man/figures/ordgam3-1.png" style="display: block; margin: auto;" />
