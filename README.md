@@ -256,7 +256,7 @@ model = mod.FL
 ## log(lambda) marginal posteriors
 par(mfrow=c(1,2),mar=c(4,5,3,1))
 for (j in 1:2){ ## Loop over <nu> components
-  ## Plot of the approximating skew-t for <nu[j]>
+  ## Plot of the approximating skew-t to the marginal posterior of <nu[j]>
   xlims = sn::qst(c(.001,.999),dp=model$nu.dp[[j]])
   xlab = bquote(log(lambda[.(j)]))
   ylab = bquote(p(log(lambda[.(j)])~ "|"~D))
