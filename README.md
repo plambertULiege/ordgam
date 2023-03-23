@@ -211,7 +211,8 @@ print(mod.FL)
 ```
 
     ## Call:
-    ##  ordgam(formula = freehms ~ s(eduyrs) + s(age), data = subset(freehmsDataBE,      region == "FL"), descending = FALSE) 
+    ##  ordgam(formula = freehms ~ s(eduyrs) + s(age), descending = FALSE,
+    ##         data = subset(freehmsDataBE, region == "FL")) 
     ## 
     ## Prior set on the regression paramaters <beta>
     ## 
@@ -239,12 +240,12 @@ print(mod.FL)
 ``` r
 fhat.FL = plot(mod.FL, mfrow=c(1,2))
 ```
-<img src="man/figures/additiveTerms-FL.png" width="90%"/>
+<img src="man/figures/AdditiveTerms-FL.png" width="90%"/>
 
 
-The estimated additive terms for education and age looks a bit different
+The estimated additive terms for education and age look a bit different
 from the estimates for Wallonia with, here, the suggestion of a
-statistically significant and linear effect of $\ttf{eduyrs}$.
+statistically significant and linear effect of 'eduyrs'.
 
 The marginal posterior distribution of the log of the penalty
 parameters, $\mu_j=\log\lambda_j$, can be visualized and compared to the
@@ -274,7 +275,7 @@ their prior:
 While the first posterior associated to penalty parameter for ‘eduyrs’
 does not depart from its prior with a large prior mean (as
 $\lambda_1 \sim {\cal G}(1,1e-4)$ has prior mean $1e4$) and suggests
-linearity, the posterior associated to $\nu_2=\log(\lambda_2)$ reveals a
+linearity, the posterior associated to $\nu_2=\log(\lambda_2)$ suggests a
 non-linear effect of ‘age’ by pointing to smaller values for the penalty
 parameter.
 
