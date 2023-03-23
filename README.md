@@ -274,7 +274,7 @@ their prior:
 
 While the first posterior associated to penalty parameter for ‘eduyrs’
 does not depart from its prior with a large prior mean (as
-$\lambda_1 \sim {\cal G}(1,1e-4)$ has prior mean $1e4$) and suggests
+$\lambda_1 \sim {\cal G}(1,10^{-4})$ has prior mean $10^4$) and suggests
 linearity, the posterior associated to $\nu_2=\log(\lambda_2)$ suggests a
 non-linear effect of ‘age’ by pointing to smaller values for the penalty
 parameter.
