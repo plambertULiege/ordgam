@@ -27,12 +27,18 @@
 #' plot(mod)
 #'
 #' @export
-plot.ordgam = function(x, ngrid=300, ci.level=.95, ...){
+plot.ordgam = function(x, ngrid=300, ci.level=.95, mfrow=NULL,...){
     obj = x
     fhat = ordgam_additive(obj,ngrid=ngrid,ci.level=ci.level) ## Compute additive term + envelope
     if (fhat$J == 0) return(NULL)
+    ## Plotting window division
+    if (is.null(mfrow)) mfrow=c(1,1)
+    maxPlts = prod(mfrow)
+    dev.new() ; par(mar=c(4,4,1,1),mfrow=mfrow)
     for (j in 1:fhat$J){
-        dev.new(width=5,height=5) ; par(mar=c(4,4,1,1))
+        if ((j%/%(maxPlts+1) == 1)) { ## New plotting window if ...
+          dev.new() ; par(mar=c(4,4,1,1),mfrow=mfrow)
+        }
         lab = names(fhat$f.grid)[j]
         with(fhat$f.grid[[j]], matplot(x, y.mat,type="l",
                                        xlab=lab,ylab=paste("f(",lab,")",sep=""),
