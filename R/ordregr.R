@@ -11,8 +11,10 @@
 #' @return An object of class \link{ordregr.object}.
 #'
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
+#'
 #' @references
-#' Lambert, P. and Gressani, O. (2022) Penalty parameter selection and asymmetry corrections to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 #'
 #' @seealso \code{\link{ordgam}}, \code{\link{ordregr.object}}.
 #'

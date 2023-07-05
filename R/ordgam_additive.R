@@ -7,7 +7,7 @@
 #' @return a list containing:
 #' \itemize{
 #' \item{\code{nalpha} : \verb{ }}{number of intercepts in the proportional odds model.}
-#' \item{\code{nfixed} : \verb{ }}{number of unpenalized regression parameters in 'beta'.}
+#' \item{\code{nfixed} : \verb{ }}{number of non-penalized regression parameters in 'beta'.}
 #' \item{\code{J} : \verb{ }}{number of additive terms.}
 #' \item{\code{additive.lab} : \verb{ }}{labels of the additive terms.}
 #' \item{\code{K} : \verb{ }}{number of spline parameters to specify an additive term.}
@@ -16,6 +16,10 @@
 #' \item{\code{f} : \verb{ }}{a list of length J with, for each additive term <x>, a list with f$x: a function computing the additive term f(x) for a given covariate value 'x' ; attributes(f$x): support, label, range.}
 #' \item{\code{f.se} : \verb{ }}{a list of length J with, for each additive term <x>, a list with f.se$x: a function computing the s.e. of f(x) for a given covariate value 'x' ; attributes(f.se$x): support, label, range}
 #' }
+#'
+#' @references
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 #'
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
 #'

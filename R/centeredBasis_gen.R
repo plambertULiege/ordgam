@@ -1,4 +1,4 @@
-## Inspired by Wood (2017, pp. 175-176)
+## Based on S. Wood (CRC Press 2017, pp. 175-176)
 ##
 ## GOAL:
 ##  Produce a B-spline basis matrix with columns recentered to handle the

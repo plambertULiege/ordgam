@@ -5,9 +5,8 @@
 #' @return Log joint posterior density function for the non-penalized regression parameters.
 #'
 #' @references
-#' Lambert, P. and Gressani, O. (2022) Penalty parameter selection and
-#' asymmetry corrections to Laplace approximations in Bayesian P-splines models.
-#' arXiv:2210.01668.
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 #'
 #' @seealso \code{\link{ordgam}}.
 #'
@@ -24,7 +23,7 @@
 #' @export
 lpost.gamma = function(model){
     ## Function returning the function log p(gamma|data)
-    ##    for a given <ordgam> model objectp
+    ##    for a given <ordgam> model object
     ngamma = with(model, nalpha+nfixed)
     zeta = model$theta ; nzeta = length(zeta)
     ## Special case: No penalized coef --> return p(zeta | D)

@@ -7,6 +7,10 @@
 #'
 #' @return A block diagonal penalty matrix of size \code{(nfixed+JK)} given by Blockdiag(diag(0,\code{nfixed}), diag(\code{lambda}).kron.\code{Pd.x})
 #'
+#' @references
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+#'
 #' @examples
 #' Dd = diff(diag(1,5),diff=2) ## Difference penalty matrix for a vector of length 5
 #' Pd = t(Dd) %*% Dd ## Penalty matrix of order 2

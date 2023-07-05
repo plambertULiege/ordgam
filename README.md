@@ -29,7 +29,7 @@ $\pmb{\eta}=\pmb{\lambda}$).
 The marginal posterior density $p(\pmb{\nu}|{\cal D})$ for the log of
 the penalty parameters, $\pmb{\nu}=\log(\pmb{\lambda})$, also could be
 approximated using a product of skew-t densities. More details can be
-found in Lambert & Gressani (2022)
+found in Lambert & Gressani (2023)
 [\[1\]](https://arxiv.org/abs/2210.01668).
 
 <figure>

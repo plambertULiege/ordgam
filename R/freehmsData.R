@@ -20,8 +20,8 @@
 #' }
 #'
 #' @references
-#' Lambert, P. and Gressani, 0. (2022) Penalty parameter selection and asymmetry corrections
-#' to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 #'
 #' @references European Social Survey Round 9 Data (2018)
 #'  Data file edition 3.1. NSD - Norwegian Centre for Research Data, Norway.
