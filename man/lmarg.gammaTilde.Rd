@@ -26,7 +26,7 @@ mod = ordgam(freehms ~ s(eduyrs) + s(age), data=freehmsData, descending=TRUE)
 ngamma = with(mod, nalpha+nfixed) ## Number of non-penalized parms
 gamt.ST = list() ## Skew-t coefs --> dst(x,dp=coef)
 for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-  x.grid = seq(-4,4,length=40) ## Grid of values for gamma.tilde[k]
+  x.grid = seq(-4,4,length=10) ## Grid of values for gamma.tilde[k]
   lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,mod) ## log p(gamma.tilde[k] | D) on the grid
   gamt.ST[[k]] = ordgam::STapprox(x.grid,lfy.grid)$dp ## Approximate using a skew-t
 }
