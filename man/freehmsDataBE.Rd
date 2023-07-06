@@ -11,7 +11,7 @@ A data frame with 1737 rows and 5 columns.
  \item{\code{gndr}}{Gender of the respondent.}
  \item{\code{age}}{Age of the respondent.}
  \item{\code{eduyrs}}{Number of years of education completed.}
-\item{\code{region}}{Belgian region of residence: WAL (Wallonia), FL (Flanders) or BXL (Brussels).}
+ \item{\code{region}}{Belgian region of residence: WAL (Wallonia), FL (Flanders) or BXL (Brussels).}
 }
 }
 \usage{
@@ -27,8 +27,8 @@ with 3 labelled as Neither agree nor disagree.
 #'
 }
 \references{
-Lambert, P. and Gressani, 0. (2022) Penalty parameter selection and asymmetry corrections
-to Laplace approximations in Bayesian P-splines models. arXiv:2210.01668.
+Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 
 European Social Survey Round 9 Data (2018)
  Data file edition 3.1. NSD - Norwegian Centre for Research Data, Norway.

@@ -1,5 +1,5 @@
 #' Significance test of additve terms relying on the methodology
-#' in Wood (Biometrika 2013). Extracted from an hidden function
+#' in Wood (Biometrika 2013). Extracted from a hidden function
 #' in the 'mgcv' package.
 #' @keywords internal
 #' @export

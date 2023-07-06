@@ -27,3 +27,7 @@ nfixed = 2 ## 2 unpenalized parameters
 ##   2 vectors of 5 P-splines coefficients with lambda values 10 and 100 respectively.
 Pcal.fun(nfixed=2,lambda=c(10,100),Pd)
 }
+\references{
+Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+}

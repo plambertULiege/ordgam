@@ -32,7 +32,7 @@ for (k in 1:ngamma){ ## Loop over the gamma.tilde components
 }
 ## Plot the estimated marginal posterior for <gamma.tilde>
 par(mfrow=c(2,2),mar=c(4,5,1,1))
-for (k in 1:ngamma){
+for (k in 1:ngamma){ ## Loop over the gamma.tilde components
   xlab = bquote(tilde(gamma)[.(k)])
   ylab = bquote(p(tilde(gamma)[.(k)]~ "|"~lambda~","~D))
   xlim = sn::qst(c(.0001,.9999),dp=gamt.ST[[k]])
@@ -42,9 +42,8 @@ for (k in 1:ngamma){
 
 }
 \references{
-Lambert, P. and Gressani, O. (2022) Penalty parameter selection and
-asymmetry corrections to Laplace approximations in Bayesian P-splines models.
-arXiv:2210.01668.
+Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 }
 \seealso{
 \code{\link{ordgam}}.

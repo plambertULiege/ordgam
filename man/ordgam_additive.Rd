@@ -17,7 +17,7 @@ ordgam_additive(obj.ordgam, ngrid = 300, ci.level = 0.95)
 a list containing:
 \itemize{
 \item{\code{nalpha} : \verb{ }}{number of intercepts in the proportional odds model.}
-\item{\code{nfixed} : \verb{ }}{number of unpenalized regression parameters in 'beta'.}
+\item{\code{nfixed} : \verb{ }}{number of non-penalized regression parameters in 'beta'.}
 \item{\code{J} : \verb{ }}{number of additive terms.}
 \item{\code{additive.lab} : \verb{ }}{labels of the additive terms.}
 \item{\code{K} : \verb{ }}{number of spline parameters to specify an additive term.}
@@ -41,6 +41,10 @@ with(obj$f.grid$age,
       matplot(x, y.mat, lty=c(1,2,2),type="l",col=1,
               xlab="Age", ylab="f(Age)"))
 
+}
+\references{
+Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
 }
 \author{
 Philippe Lambert \email{p.lambert@uliege.be}

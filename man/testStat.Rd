@@ -3,14 +3,14 @@
 \name{testStat}
 \alias{testStat}
 \title{Significance test of additve terms relying on the methodology
-in Wood (Biometrika 2013). Extracted from an hidden function
+in Wood (Biometrika 2013). Extracted from a hidden function
 in the 'mgcv' package.}
 \usage{
 testStat(p, X, V, rank = NULL, type = 0, res.df = -1)
 }
 \description{
 Significance test of additve terms relying on the methodology
-in Wood (Biometrika 2013). Extracted from an hidden function
+in Wood (Biometrika 2013). Extracted from a hidden function
 in the 'mgcv' package.
 }
 \keyword{internal}

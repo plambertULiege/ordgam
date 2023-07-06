@@ -55,6 +55,10 @@ An \code{ordgam} object is a list with following elements:
 An object returned by the \code{\link{ordgam}} function: this is a list
 with various components related to the fit of such a model.
 }
+\references{
+Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+}
 \seealso{
 \code{\link{ordgam}}, \code{\link{print.ordregr}}, \code{\link{plot.ordgam}}
 }
