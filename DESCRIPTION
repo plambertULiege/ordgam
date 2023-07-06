@@ -1,6 +1,6 @@
 Package: ordgam
 Type: Package
-Title: Additive proportional odds model for ordinal data using Laplace approximations and Bayesian P-splines
+Title: Additive Proportional Odds Model for Ordinal Data using Laplace Approximations and Bayesian P-Splines
 Version: 0.9.0
 Author:
         person(given = "Philippe",
