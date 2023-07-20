@@ -19,23 +19,19 @@
 #' @examples
 #' library(ordgam)
 #' data(freehmsData)
-#' mod = ordgam(freehms ~ s(eduyrs) + s(age), data=freehmsData, descending=TRUE)
+#' mod = ordgam(freehms ~ s(eduyrs) + s(age), data=freehmsData, descending=TRUE,
+#'              lambda0=c(192,18),select.lambda=FALSE)
 #' ngamma = with(mod, nalpha+nfixed) ## Number of non-penalized parms
-#' gamt.ST = list() ## Skew-t coefs --> dst(x,dp=coef)
-#' for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-#'   x.grid = seq(-4,4,length=8) ## Grid of values for gamma.tilde[k]
-#'   lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,mod) ## log p(gamma.tilde[k] | D) on the grid
-#'   gamt.ST[[k]] = ordgam::STapprox(x.grid,lfy.grid)$dp ## Approximate using a skew-t
-#' }
-#' ## Plot the estimated marginal posterior for <gamma.tilde>
-#' par(mfrow=c(2,2),mar=c(4,5,1,1))
-#' for (k in 1:ngamma){ ## Loop over the gamma.tilde components
-#'   xlab = bquote(tilde(gamma)[.(k)])
-#'   ylab = bquote(p(tilde(gamma)[.(k)]~ "|"~lambda~","~D))
-#'   xlim = sn::qst(c(.0001,.9999),dp=gamt.ST[[k]])
-#'   curve(sn::dst(x,dp=gamt.ST[[k]]),xlim=xlim,
-#'           xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1)
-#' }
+#' k = 1 ## Focus on gamma.tilde[1]
+#' x.grid = seq(-4,4,length=7) ## Grid of values for gamma.tilde[k]
+#' lfy.grid = ordgam::lmarg.gammaTilde(x.grid,k=k,mod) ## log p(gamma.tilde[k] | D) on the grid
+#' gamt.ST = ordgam::STapprox(x.grid,lfy.grid)$dp ## Approximate using a skew-t
+#' ## Plot the estimated marginal posterior for <gamma.tilde[k]>
+#' xlab = bquote(tilde(gamma)[.(k)])
+#' ylab = bquote(p(tilde(gamma)[.(k)]~ "|"~lambda~","~D))
+#' xlim = sn::qst(c(.0001,.9999),dp=gamt.ST)
+#' curve(sn::dst(x,dp=gamt.ST),xlim=xlim,
+#'       xlab=xlab,ylab=ylab,col="blue",lwd=2,lty=1)
 #'
 #' @export
 lmarg.gammaTilde = function(gamtk, k, model){
