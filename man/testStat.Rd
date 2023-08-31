@@ -2,15 +2,34 @@
 % Please edit documentation in R/testStat.R
 \name{testStat}
 \alias{testStat}
-\title{Significance test of additve terms relying on the methodology
-in Wood (Biometrika 2013). Extracted from a hidden function
-in the 'mgcv' package.}
+\title{Significance test of an additive term}
 \usage{
 testStat(p, X, V, rank = NULL, type = 0, res.df = -1)
 }
+\arguments{
+\item{p}{Vector of spline parameters used to estimate f(x)}
+
+\item{X}{(Centered) B-spline basis evaluated on a fine regular grid on the support of variable <x>}
+
+\item{V}{Posterior variance-covariance matrix of parameter <p>}
+
+\item{rank}{Effective dimension of <p>}
+
+\item{type}{0 value by default}
+
+\item{res.df}{-1 indicates that the scale is fixed (cf. ordinal response)}
+}
+\value{
+Returns a list with following elements:
+\itemize{
+\item{stat : \verb{ }}{Value of the test statistics}
+\item{pval : \verb{ }}{P-value of the test for the null hypothesis Ho: p=0}
+\item{rank : \verb{ }}{Effective dimension of <p>}
+}
+}
 \description{
-Significance test of additve terms relying on the methodology
-in Wood (Biometrika 2013). Extracted from a hidden function
-in the 'mgcv' package.
+Significance test of an additive term relying on the methodology
+in Wood (Biometrika 2013). It is extracted from a hidden function
+in the 'mgcv' package. The additive term is estimated using the product of a matrix <X> and a vector <p>
 }
 \keyword{internal}

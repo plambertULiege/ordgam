@@ -2,11 +2,17 @@
 % Please edit documentation in R/s.R
 \name{s}
 \alias{s}
-\title{Specification of smooth terms in formulas in the DALSM function.}
+\title{Specification of smooth terms in formulas in the ordgam function.}
 \usage{
 s(x)
 }
+\arguments{
+\item{x}{Name of the variable for which an additive term is requested}
+}
+\value{
+The submitted variable for which an additive term is required
+}
 \description{
-Specification of smooth terms in formulas in the DALSM function.
+Specification of smooth terms in formulas in the ordgam function.
 }
 \keyword{internal}

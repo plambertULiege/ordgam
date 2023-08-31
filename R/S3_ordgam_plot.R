@@ -11,7 +11,7 @@
 #' @param mfrow (Optional) A vector of the form c(nr, nc). Subsequent figures will be drawn in an nr-by-nc array on the device by rows.
 #' @param ... Additional generic plotting arguments.
 #'
-#' @return Besides the plots, an invisible object containing information on the estimated additive terms.
+#' @return In addition to the plots, an invisible object containing information on the estimated additive terms is returned, see the \code{ordgam_additive} function documentation for more details.
 #'
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
 #' @references
@@ -36,6 +36,8 @@ plot.ordgam = function(x, ngrid=300, ci.level=.95, mfrow=NULL,...){
     ## Plotting window division
     if (is.null(mfrow)) mfrow=c(1,1)
     maxPlts = prod(mfrow)
+    ## Make sure to restore the graphics parameters as they were before calling the function.
+    oldpar <- par(no.readonly = TRUE) ; on.exit(par(oldpar))
     dev.new() ; par(mar=c(4,4,1,1),mfrow=mfrow)
     for (j in 1:fhat$J){
         if ((j%/%(maxPlts+1) == 1)) { ## New plotting window if ...

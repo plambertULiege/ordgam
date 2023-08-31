@@ -1,6 +1,19 @@
-#' Significance test of additve terms relying on the methodology
-#' in Wood (Biometrika 2013). Extracted from a hidden function
-#' in the 'mgcv' package.
+#' Significance test of an additive term
+#' @description Significance test of an additive term relying on the methodology
+#' in Wood (Biometrika 2013). It is extracted from a hidden function
+#' in the 'mgcv' package. The additive term is estimated using the product of a matrix <X> and a vector <p>.
+#' @param p Vector of spline parameters used to estimate f(x)
+#' @param X (Centered) B-spline basis evaluated on a fine regular grid on the support of variable <x>
+#' @param V Posterior variance-covariance matrix of parameter <p>
+#' @param rank Effective dimension of <p>
+#' @param type 0 value by default
+#' @param res.df -1 indicates that the scale is fixed (cf. ordinal response)
+#' @return Returns a list with following elements:
+#' \itemize{
+#' \item{stat : \verb{ }}{Value of the test statistics}
+#' \item{pval : \verb{ }}{P-value of the test for the null hypothesis Ho: p=0}
+#' \item{rank : \verb{ }}{Effective dimension of <p>}
+#' }
 #' @keywords internal
 #' @export
 testStat = function (p, X, V, rank = NULL, type = 0, res.df = -1){
