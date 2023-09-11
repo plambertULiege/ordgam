@@ -30,6 +30,6 @@ Returns a list with following elements:
 \description{
 Significance test of an additive term relying on the methodology
 in Wood (Biometrika 2013). It is extracted from a hidden function
-in the 'mgcv' package. The additive term is estimated using the product of a matrix <X> and a vector <p>
+in the 'mgcv' package. The additive term is estimated using the product of a matrix <X> and a vector <p>.
 }
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/SNapprox.R
 \name{SNapprox}
 \alias{SNapprox}
-\title{Skew-Normal approximation to a density observed on a sparse grid}
+\title{Skew-Normal approximation to a density evaluated on a sparse grid}
 \usage{
 SNapprox(x, lfx)
 }
@@ -19,7 +19,7 @@ A list containing
 }
 }
 \description{
-Skew-Normal approximation to a density observed on a sparse grid
+Skew-Normal approximation to a density evaluated on a sparse grid
 }
 \examples{
 library(ordgam)
@@ -42,7 +42,7 @@ legend("topright",legend=c("Target density","Skew-Normal approx."),
 }
 \references{
 Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
-to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
 }
 \seealso{
 \code{\link{STapprox}}.

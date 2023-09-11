@@ -20,6 +20,11 @@
 #' \item{\code{Hessian} : \verb{ }}{Hessian wrt c(alpha,beta).}
 #' \item{\code{dtheta} : \verb{ }}{step in a Newton-Raphson iteration: solve(-Hessian,grad).}
 #' }
+#'
+#' @references
+#' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
+#'
 #' @export
 #'
 ordregr_lpost = function(y,nc,Xcal,theta, descending=FALSE,

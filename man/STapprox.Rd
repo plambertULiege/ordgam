@@ -2,7 +2,7 @@
 % Please edit documentation in R/STapprox.R
 \name{STapprox}
 \alias{STapprox}
-\title{Skew-t approximation to a density observed on a sparse grid}
+\title{Skew-t approximation to a density evaluated on a sparse grid}
 \usage{
 STapprox(x, lfx)
 }
@@ -19,7 +19,7 @@ A list containing
 }
 }
 \description{
-Skew-t approximation to a density observed on a sparse grid
+Skew-t approximation to a density evaluated on a sparse grid
 }
 \examples{
 library(ordgam)

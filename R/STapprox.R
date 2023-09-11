@@ -1,4 +1,4 @@
-#' Skew-t approximation to a density observed on a sparse grid
+#' Skew-t approximation to a density evaluated on a sparse grid
 #'
 #' @param x Vector containing a grid of values on the density support and covering the posterior mode.
 #' @param lfx Log density values on the grid \code{x} (possibly up to an additive constant)

@@ -19,7 +19,7 @@
 #'
 #' @references
 #' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
-#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
 #'
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
 #'
@@ -56,7 +56,7 @@ ordgam_additive <- function(obj.ordgam,ngrid=300, ci.level=.95){
         add.lab = obj$regr$additive.lab
         ans$additive.lab = add.lab
         ans$K=K ; ans$knots = obj$regr$knots.x
-        mat = matrix(nrow=ngrid,ncol=J) ; colnames(mat) = add.lab
+        ## mat = matrix(nrow=ngrid,ncol=J) ; colnames(mat) = add.lab
         Sigma = solve(-obj$Hessian) ## Sigma(theta)
         ## x.grid = f.grid = f.grid.se = f.grid.low = f.grid.up = mat
         f.grid = list()

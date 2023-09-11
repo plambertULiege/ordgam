@@ -1,4 +1,4 @@
-#' Skew-Normal approximation to a density observed on a sparse grid
+#' Skew-Normal approximation to a density evaluated on a sparse grid
 #'
 #' @param x Vector containing a grid of values on the density support and covering the posterior mode.
 #' @param lfx Log density values on the grid \code{x} (possibly up to an additive constant)
@@ -9,10 +9,9 @@
 #' \item{\code{fitted.moments} : \verb{ }}{Mean, variance, skewness, kurtosis of the approximating skew-Normal.}
 #' }
 #'
-#'
 #' @references
 #' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
-#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling (in press). Preprint: arXiv:2210.01668.
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
 #'
 #' @seealso \code{\link{STapprox}}.
 #'
