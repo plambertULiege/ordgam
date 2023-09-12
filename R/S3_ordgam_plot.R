@@ -16,7 +16,7 @@
 #' @author Philippe Lambert \email{p.lambert@uliege.be}
 #' @references
 #' Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
-#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
+#' to Laplace approximations in Bayesian P-splines models. Statistical Modelling. <doi:10.1177/1471082X231181173>. Preprint: <arXiv:2210.01668>.
 #'
 #' @seealso \code{\link{ordgam}}, \code{\link{ordgam.object}}, \code{ordgam.additive}, \code{\link{print.ordregr}}.
 #'

@@ -302,7 +302,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 
 \[1\] Lambert, P. and Gressani, O (2023). Penalty parameter selection
 and asymmetry corrections to Laplace approximations in Bayesian
-P-splines models. *Statistical Modelling* [*doi:10.1177/1471082X231181173*](http://doi.org/doi:10.1177/1471082X231181173). Preprint: [*arXiv:2210.01668*](https://arxiv.org/abs/2210.01668)
+P-splines models. *Statistical Modelling* [*doi:10.1177/1471082X231181173*](https://doi.org/10.1177/1471082X231181173). Preprint: [*arXiv:2210.01668*](https://arxiv.org/abs/2210.01668)
 
 \[2\] Lambert, P. (2023) R-package *ordgam* - CRAN and GitHub:
 [plambertULiege/ordgam](https://github.com/plambertULiege/ordgam)

@@ -36,7 +36,7 @@ with various components related to the fit of such a model.
 }
 \references{
 Lambert, P. and Gressani, 0. (2023) Penalty parameter selection and asymmetry corrections
-to Laplace approximations in Bayesian P-splines models. Statistical Modelling. doi:10.1177/1471082X231181173. Preprint: arXiv:2210.01668.
+to Laplace approximations in Bayesian P-splines models. Statistical Modelling. <doi:10.1177/1471082X231181173>. Preprint: <arXiv:2210.01668>.
 }
 \seealso{
 \code{\link{ordregr}}, \code{\link{print.ordregr}}
