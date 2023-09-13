@@ -11,7 +11,8 @@ DesignFormula(
   pen.order = 2,
   knots.x = NULL,
   n = NULL,
-  nointercept = FALSE
+  nointercept = FALSE,
+  verbose = TRUE
 )
 }
 \description{

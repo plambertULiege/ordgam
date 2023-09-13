@@ -8,6 +8,8 @@
 ##   K: number of B-splines to describe an additive term
 ##   pen.order: desired penalty order for additive terms
 ##   n: number of units (by default: obtained from the design matrix constructed from the formula and the data frame)
+##   nointercept: logical indicating whether the design matrix should exclude the column corresponding to the intercept (Default: FALSE)
+##.  verbose: verbose indicator (Default: TRUE)
 ##
 ## OUTPUT:
 ##   list with
@@ -32,12 +34,12 @@
 #' Internal function extracting design matrices from formulas in the DALSM function and computing penalty related matrices.
 #' @keywords internal
 
-DesignFormula = function(formula, data, K=10, pen.order=2, knots.x=NULL, n=NULL, nointercept=FALSE){
+DesignFormula = function(formula, data, K=10, pen.order=2, knots.x=NULL, n=NULL, nointercept=FALSE, verbose=TRUE){
   if (!inherits(formula, "formula"))
     stop("Incorrect model formula")
   if ((formula=="~1")&(missing(data))){
     if (is.null(n)){
-      cat("Model with only the intercept: the sample size <n> or a data frame should be provided !\n")
+      if (verbose) cat("Model with only the intercept: the sample size <n> or a data frame should be provided !\n")
       return(NULL)
     }
     XX = model.matrix(~ 1, data = data.frame(rep(1,n)))
