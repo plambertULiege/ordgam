@@ -30,7 +30,7 @@ The marginal posterior density $p(\pmb{\nu}|{\cal D})$ for the log of
 the penalty parameters, $\pmb{\nu}=\log(\pmb{\lambda})$, also could be
 approximated using a product of skew-t densities. More details can be
 found in Lambert & Gressani (2023)
-[\[1\]](https://arxiv.org/abs/2210.01668).
+[\[1\]](https://doi.org/10.1177/1471082X231181173).
 
 <figure>
 <img src="man/figures/Fig1-LatentSpace.png" width="85%" />
